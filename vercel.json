@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+
+    { "source": "/politica-de-privacidade.html", "destination": "/privacy-policy/", "permanent": true },
+    { "source": "/termos-de-servico.html", "destination": "/terms-of-service/", "permanent": true },
+    { "source": "/politica-de-privacidade", "destination": "/privacy-policy/", "permanent": true },
+    { "source": "/politica-de-privacidade/", "destination": "/privacy-policy/", "permanent": true },
+    { "source": "/termos-de-servico", "destination": "/terms-of-service/", "permanent": true },
+    { "source": "/termos-de-servico/", "destination": "/terms-of-service/", "permanent": true },
+
+    { "source": "/privacy-policy", "destination": "/privacy-policy/", "permanent": true },
+    { "source": "/terms-of-service", "destination": "/terms-of-service/", "permanent": true }
+  ]
+}
