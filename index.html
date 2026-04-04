@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Thiago — Data Analyst & BI Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --white: #F5F5F0;
+      --lime: #C8FF00;
+      --lime-dim: #9ABF00;
+      --gray-900: #141414;
+      --gray-800: #1C1C1C;
+      --gray-700: #2A2A2A;
+      --gray-500: #666;
+      --gray-400: #888;
+      --gray-300: #AAA;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      background: var(--black);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--lime);
+      color: var(--black);
+    }
+
+    /* ═══════════════ NAV ═══════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-700);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--lime);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--lime);
+    }
+
+    /* ═══════════════ HERO ═══════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--lime);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero h1 .accent {
+      color: var(--lime);
+      display: inline-block;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--gray-300);
+      max-width: 560px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-grid-decoration {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 320px;
+      height: 320px;
+      border: 1px solid var(--gray-700);
+      opacity: 0.4;
+    }
+
+    .hero-grid-decoration::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 1px solid var(--lime);
+      opacity: 0.15;
+    }
+
+    /* ═══════════════ SECTIONS ═══════════════ */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ═══════════════ SERVICES ═══════════════ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      padding: 2.5rem 2rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--lime);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      border-color: var(--gray-500);
+      transform: translateY(-4px);
+    }
+
+    .service-number {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--lime-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      color: var(--gray-400);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════ PLATFORMS ═══════════════ */
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .platform-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--gray-700);
+      color: var(--gray-300);
+      background: var(--gray-800);
+      transition: all 0.3s;
+    }
+
+    .platform-tag:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    /* ═══════════════ CONTACT ═══════════════ */
+    .contact-block {
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-block a {
+      color: var(--lime);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+    }
+
+    .contact-block a:hover {
+      opacity: 0.7;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gray-500);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ═══════════════ DIVIDER ═══════════════ */
+    .divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--gray-700);
+    }
+
+    /* ═══════════════ LEGAL PAGES ═══════════════ */
+    .legal-page {
+      padding: 8rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .legal-page.active {
+      display: block;
+    }
+
+    .legal-page h1 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-page .legal-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-bottom: 3rem;
+    }
+
+    .legal-page h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--lime);
+    }
+
+    .legal-page p {
+      color: var(--gray-300);
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    .legal-page ul {
+      color: var(--gray-300);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      line-height: 1.75;
+    }
+
+    .legal-page .back-link {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lime);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: opacity 0.3s;
+    }
+
+    .legal-page .back-link:hover {
+      opacity: 0.7;
+    }
+
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-legal a {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-legal a:hover {
+      color: var(--lime);
+    }
+
+    /* ═══════════════ ANIMATIONS ═══════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════ RESPONSIVE ═══════════════ */
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.65rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .hero-grid-decoration { display: none; }
+      .contact-block { padding: 2rem; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-legal { gap: 1.5rem; }
+      .legal-page { padding: 6rem 1.5rem 3rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 0.75rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav>
+    <a href="#" class="nav-logo" onclick="showMain(event)">PT<span>.</span>DEV</a>
+    <ul class="nav-links">
+      <li><a href="#services" onclick="showMain()">Services</a></li>
+      <li><a href="#platforms" onclick="showMain()">Platforms</a></li>
+      <li><a href="#contact" onclick="showMain()">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+  <div id="main-content">
+
+    <!-- HERO -->
+    <header class="hero">
+      <p class="hero-tag">// Data Analyst & BI Consultant</p>
+      <h1>
+        Turning raw data<br>
+        into <span class="accent">clear decisions</span>
+      </h1>
+      <p class="hero-desc">
+        Business Intelligence consulting, automated reporting pipelines, and data-driven dashboards for companies that take their numbers seriously.
+      </p>
+      <div class="hero-grid-decoration" aria-hidden="true"></div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <p class="section-label">// 01 — What I do</p>
+      <h2 class="section-title">Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <p class="service-number">001</p>
+          <h3>BI Consulting</h3>
+          <p>End-to-end Business Intelligence strategy — from data source mapping to executive dashboards that drive action, not just reports.</p>
+        </div>
+        <div class="service-card">
+          <p class="service-number">002</p>
+          <h3>Automated Reporting</h3>
+          <p>API integrations with Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, and more. Your advertising data, consolidated and refreshed automatically.</p>
+        </div>
+        <div class="service-card">
+          <p class="service-number">003</p>
+          <h3>Custom Dashboards</h3>
+          <p>Interactive dashboards built with Power BI and modern tools, tailored to your KPIs and business context. No templates — built from scratch.</p>
+        </div>
+        <div class="service-card">
+          <p class="service-number">004</p>
+          <h3>Data Pipelines</h3>
+          <p>Reliable data pipelines that extract, transform, and load your data from multiple platforms into a single source of truth.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- PLATFORMS -->
+    <section id="platforms">
+      <p class="section-label">// 02 — Integrations</p>
+      <h2 class="section-title">Platforms & APIs</h2>
+      <p style="color: var(--gray-400); margin-bottom: 1.5rem; max-width: 560px;">
+        We build secure, authorized integrations with major advertising and business platforms through their official APIs.
+      </p>
+      <div class="platforms">
+        <span class="platform-tag">Meta Ads</span>
+        <span class="platform-tag">Google Ads</span>
+        <span class="platform-tag">TikTok Ads</span>
+        <span class="platform-tag">LinkedIn Ads</span>
+        <span class="platform-tag">Google Sheets</span>
+        <span class="platform-tag">Google Analytics</span>
+        <span class="platform-tag">Power BI</span>
+        <span class="platform-tag">Salesforce</span>
+        <span class="platform-tag">Supabase</span>
+        <span class="platform-tag">PostgreSQL</span>
+      </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">// 03 — Get in touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-block">
+        <div>
+          <p class="contact-label">Email</p>
+          <a href="mailto:pedrothiago@pedrotdev.onmicrosoft.com">pedrothiago@pedrotdev.onmicrosoft.com</a>
+        </div>
+        <div>
+          <p class="contact-label">Location</p>
+          <p style="color: var(--gray-300); font-size: 0.95rem;">Goiânia, GO — Brazil</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
+  <div id="privacy-policy" class="legal-page">
+    <a href="#" class="back-link" onclick="showMain(event)">← Back to Home</a>
+    <h1>Privacy Policy</h1>
+    <p class="legal-date">Last updated: April 2026</p>
+
+    <h2>1. Introduction</h2>
+    <p>Pedro Thiago Data Analyst ("we," "us," or "our") operates data analytics and business intelligence consulting services. This Privacy Policy describes how we collect, use, store, and protect information when you use our services, applications, and integrations, including any tools or software that connect to third-party advertising and business platforms via their official APIs.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We may collect and process the following types of information:</p>
+    <ul>
+      <li><strong>Account & Contact Information:</strong> Name, email address, company name, and other contact details you provide when engaging our services.</li>
+      <li><strong>Advertising Platform Data:</strong> Campaign performance data, ad metrics, and reporting data retrieved from authorized advertising accounts on platforms such as Meta Ads, Google Ads, TikTok Ads, and LinkedIn Ads, accessed through their official APIs with your explicit authorization.</li>
+      <li><strong>Technical Data:</strong> IP address, browser type, device information, and usage data collected automatically when you interact with our applications or websites.</li>
+      <li><strong>Authorization Tokens:</strong> OAuth access tokens and refresh tokens used to maintain authorized connections to third-party platforms on your behalf.</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li>To provide, maintain, and improve our BI consulting and data analytics services.</li>
+      <li>To retrieve and consolidate advertising performance data from authorized platforms for reporting and dashboard purposes.</li>
+      <li>To communicate with you regarding our services, updates, and support.</li>
+      <li>To comply with legal obligations and enforce our terms of service.</li>
+    </ul>
+    <p>We do not use your data to build user profiles, serve advertisements, or for any purpose beyond the scope of our contracted services.</p>
+
+    <h2>4. Data Sharing & Disclosure</h2>
+    <p>We do not sell, rent, or trade your personal information or advertising data to any third parties. We may share data only in the following circumstances:</p>
+    <ul>
+      <li><strong>With your consent:</strong> When you explicitly authorize us to share data with specific parties.</li>
+      <li><strong>Service providers:</strong> With trusted infrastructure providers (such as cloud hosting services) that process data on our behalf under strict confidentiality agreements.</li>
+      <li><strong>Legal requirements:</strong> When required by law, regulation, or legal process.</li>
+    </ul>
+
+    <h2>5. Third-Party Platform Data</h2>
+    <p>When you authorize our applications to access your advertising accounts on platforms such as Meta, Google, TikTok, or LinkedIn, we access only the data scopes you have explicitly authorized. We comply with each platform's developer terms of service, data use policies, and API usage guidelines. You may revoke our access to your accounts at any time through the respective platform's settings.</p>
+
+    <h2>6. Data Security</h2>
+    <p>We implement appropriate technical and organizational measures to protect your data, including encryption of data in transit (TLS/SSL), secure storage of authentication tokens, access controls, and regular security reviews. However, no method of electronic transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+
+    <h2>7. Data Retention</h2>
+    <p>We retain your data only for as long as necessary to provide our services or as required by law. Authorization tokens are stored securely and refreshed as needed. When our services are terminated, we will delete your data within 30 days unless retention is required by applicable law.</p>
+
+    <h2>8. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+    <ul>
+      <li>Access, correct, or delete your personal data.</li>
+      <li>Withdraw consent for data processing at any time.</li>
+      <li>Request a copy of your data in a portable format.</li>
+      <li>Object to or restrict certain types of data processing.</li>
+    </ul>
+    <p>To exercise any of these rights, please contact us at the email address provided in the Contact section.</p>
+
+    <h2>9. Cookies & Tracking</h2>
+    <p>Our website may use essential cookies to ensure basic functionality. We do not use tracking cookies, third-party analytics, or advertising pixels on our website.</p>
+
+    <h2>10. Children's Privacy</h2>
+    <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children.</p>
+
+    <h2>11. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. Continued use of our services after changes constitutes acceptance of the revised policy.</p>
+
+    <h2>12. Contact</h2>
+    <p>If you have questions about this Privacy Policy or wish to exercise your data rights, please contact us at:</p>
+    <p><strong>Pedro Thiago Data Analyst</strong><br>
+    Email: pedrothiago@pedrotdev.onmicrosoft.com<br>
+    Location: Goiânia, GO — Brazil</p>
+  </div>
+
+  <!-- ═══════════════ TERMS OF SERVICE ═══════════════ -->
+  <div id="terms-of-service" class="legal-page">
+    <a href="#" class="back-link" onclick="showMain(event)">← Back to Home</a>
+    <h1>Terms of Service</h1>
+    <p class="legal-date">Last updated: April 2026</p>
+
+    <h2>1. Agreement to Terms</h2>
+    <p>By accessing or using our services, applications, or website ("Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with these Terms, do not use our Services.</p>
+
+    <h2>2. Description of Services</h2>
+    <p>Pedro Thiago Data Analyst provides business intelligence consulting, data analytics, automated reporting, and software integration services. Our applications may connect to third-party advertising and business platforms (including but not limited to Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, and Salesforce) through their official APIs to retrieve and consolidate performance data for reporting purposes.</p>
+
+    <h2>3. Authorization & Access</h2>
+    <p>To use our integration services, you must authorize our application to access your accounts on supported platforms. By granting authorization, you confirm that:</p>
+    <ul>
+      <li>You have the right and authority to grant such access.</li>
+      <li>You understand the scope of permissions being granted.</li>
+      <li>You may revoke access at any time through the respective platform's settings or by contacting us directly.</li>
+    </ul>
+
+    <h2>4. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use our Services for any unlawful purpose or in violation of any applicable laws or regulations.</li>
+      <li>Attempt to gain unauthorized access to our systems, networks, or data.</li>
+      <li>Interfere with or disrupt the integrity or performance of our Services.</li>
+      <li>Provide false or misleading information when using our Services.</li>
+    </ul>
+
+    <h2>5. Intellectual Property</h2>
+    <p>All content, code, designs, dashboards, and reports created by Pedro Thiago Data Analyst remain our intellectual property unless otherwise agreed in writing. Client-specific data and reports are licensed for the client's use as specified in individual service agreements.</p>
+
+    <h2>6. Third-Party Services</h2>
+    <p>Our Services integrate with third-party platforms and APIs. We are not responsible for the availability, accuracy, or policies of these third-party services. Your use of third-party platforms is subject to their respective terms of service and privacy policies.</p>
+
+    <h2>7. Data Handling</h2>
+    <p>Our handling of your data is governed by our <a href="#" onclick="showPage('privacy-policy', event)" style="color: var(--lime);">Privacy Policy</a>. By using our Services, you acknowledge and agree to the data practices described therein.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, Pedro Thiago Data Analyst shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities, arising out of or relating to the use of our Services.</p>
+
+    <h2>9. Service Availability</h2>
+    <p>We strive to maintain continuous availability of our Services but do not guarantee uninterrupted access. Services may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control, including third-party API changes or outages.</p>
+
+    <h2>10. Termination</h2>
+    <p>Either party may terminate the service relationship at any time with reasonable notice. Upon termination, we will cease accessing your data and delete any stored tokens and data within 30 days, unless retention is required by law.</p>
+
+    <h2>11. Modifications</h2>
+    <p>We reserve the right to modify these Terms at any time. Changes will be effective when posted on this page. Continued use of our Services after modifications constitutes acceptance of the updated Terms.</p>
+
+    <h2>12. Governing Law</h2>
+    <p>These Terms are governed by the laws of the Federative Republic of Brazil. Any disputes arising from these Terms shall be resolved in the courts of Goiânia, State of Goiás, Brazil.</p>
+
+    <h2>13. Contact</h2>
+    <p>For questions about these Terms, please contact us at:</p>
+    <p><strong>Pedro Thiago Data Analyst</strong><br>
+    Email: pedrothiago@pedrotdev.onmicrosoft.com<br>
+    Location: Goiânia, GO — Brazil</p>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <p class="footer-copy">© 2026 Pedro Thiago Data Analyst. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#" onclick="showPage('privacy-policy', event)">Privacy Policy</a>
+      <a href="#" onclick="showPage('terms-of-service', event)">Terms of Service</a>
+    </div>
+  </footer>
+
+  <script>
+    function showPage(pageId, event) {
+      if (event) event.preventDefault();
+      document.getElementById('main-content').style.display = 'none';
+      document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showMain(event) {
+      if (event) event.preventDefault();
+      document.getElementById('main-content').style.display = 'block';
+      document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('active'));
+    }
+  </script>
+
+</body>
+</html>
