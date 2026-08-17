@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/callback/tiktok", "destination": "/api/tiktok-callback" }
+  ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
 
