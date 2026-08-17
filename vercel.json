@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/callback/tiktok", "destination": "/api/tiktok-callback" }
+    { "source": "/callback/tiktok", "destination": "/api/tiktok-callback" },
+    { "source": "/callback/linkedin", "destination": "/api/linkedin-callback" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
